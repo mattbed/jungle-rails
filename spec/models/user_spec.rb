@@ -59,4 +59,41 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe '.authenticate_with_credentials' do
+    context 'Checks that a user login attempt' do
+      it 'logs in with proper credentials' do
+        User.new(first_name: "Test", last_name: "Test", email: "Test@Test.com", password: "testtest", password_confirmation: "testtest").save
+        @user = User.authenticate_with_credentials("Test@Test.com", "testtest")
+        expect(@user).to_not be_nil
+        expect(@user).to have_attributes(first_name: "Test", last_name: "Test")
+      end
+
+      it 'returns nil with incorrect password' do
+        User.new(first_name: "Test", last_name: "Test", email: "Test@Test.com", password: "testtest", password_confirmation: "testtest").save
+        @user= User.authenticate_with_credentials("Test@Test.com", "wrongpass")
+        expect(@user).to be_nil
+      end
+
+      it 'returns nil with incorrect email' do
+        User.new(first_name: "Test", last_name: "Test", email: "Test@Test.com", password: "testtest", password_confirmation: "testtest").save
+        @user= User.authenticate_with_credentials("wrong@Test.com", "testtest")
+        expect(@user).to be_nil
+      end
+
+      it 'logs in regardless of case of email' do
+        User.new(first_name: "Test", last_name: "Test", email: "test@Test.com", password: "testtest", password_confirmation: "testtest").save
+        @user = User.authenticate_with_credentials("TEST@Test.com", "testtest")
+        expect(@user).to_not be_nil
+        expect(@user).to have_attributes(first_name: "Test", last_name: "Test")
+      end
+
+      it 'logs in if a user has extra spaces around a valid email' do
+        User.new(first_name: "Test", last_name: "Test", email: "Test@Test.com", password: "testtest", password_confirmation: "testtest").save
+        @user = User.authenticate_with_credentials("   Test@Test.com  ", "testtest")
+        expect(@user).to_not be_nil
+        expect(@user).to have_attributes(first_name: "Test", last_name: "Test")
+      end
+    end
+  end
 end
