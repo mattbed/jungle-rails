@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       redirect_to '/'
     else
       # If users login doesn't work, redirect back
-      redirect to '/login'
+      redirect_to '/login'
     end
   end
 
