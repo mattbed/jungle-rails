@@ -2,6 +2,20 @@
 
 A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
 
+## Screengrabs
+
+### Main page view
+!["Main page."](https://github.com/mattbed/jungle-rails/blob/master/docs/Jungle_01.png?raw=true)
+
+### Cart with products view
+!["Cart with products."](https://github.com/mattbed/jungle-rails/blob/master/docs/Jungle_02.png?raw=true)
+
+### Pay screen view
+!["Pay screen."](https://github.com/mattbed/jungle-rails/blob/master/docs/Jungle_03.png?raw=true)
+
+### Admin products view
+!["Admin products page."](https://github.com/mattbed/jungle-rails/blob/master/docs/Jungle_04.png?raw=true)
+
 ## Additional Steps for Apple M1 Machines
 
 1. Make sure that you are runnning Ruby 2.6.6 (`ruby -v`)
@@ -22,12 +36,17 @@ A mini e-commerce application built with Rails 4.2 for purposes of teaching Rail
 
 ## Stripe Testing
 
-Use Credit Card # 4111 1111 1111 1111 for testing success scenarios.
+Use Credit Card # 4242 4242 4242 4242, any date in the future and any CVC for testing success scenarios.
 
 More information in their docs: <https://stripe.com/docs/testing#cards>
+
+## Testing
+
+Testing is done with Capybara and rspec. Type $rspec into console to run all tests.
 
 ## Dependencies
 
 * Rails 4.2 [Rails Guide](http://guides.rubyonrails.org/v4.2/)
 * PostgreSQL 9.x
 * Stripe
+* Bcrypt
